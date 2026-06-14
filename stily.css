@@ -1,0 +1,94 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #f2f2f2;
+}
+
+.menu-container{
+    position: relative;
+}
+
+nav{
+    position: relative;
+    width: 524px;
+    height: 50px;
+    background: #fff;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+}
+
+nav a{
+    position: relative;
+    display: inline-block;
+    font-size: 1em;
+    color: #333;
+    text-decoration: none;
+    padding: 0 20px;
+    line-height: 50px;
+    z-index: 1;
+}
+
+nav span{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 95px;
+    height: 100%;
+    background: linear-gradient(45deg, #ff105f, #ffad06);
+    border-radius: 8px;
+    transition: 0.5s ease;
+}
+
+nav a:nth-child(1):hover ~ span{
+    left: 0;
+    width: 95px;
+}
+
+nav a:nth-child(2):hover ~ span{
+    left: 95px;
+    width: 95px;
+}
+
+nav a:nth-child(3):hover ~ span{
+    left: 190px;
+    width: 110px;
+}
+
+nav a:nth-child(4):hover ~ span{
+    left: 300px;
+    width: 115px;
+}
+
+nav a:nth-child(5):hover ~ span{
+    left: 415px;
+    width: 110px;
+}
+
+.btn-whatsapp{
+    position: absolute;
+    top: -70px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    padding: 12px 25px;
+    background: #25D366;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.btn-whatsapp:hover{
+    transform: translateX(-50%) scale(1.05);
+}
