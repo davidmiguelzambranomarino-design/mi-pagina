@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="es" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CobroFlex - Cobra más rápido</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: '#0A3D62',
+            'navy-light': '#0E4D7A',
+            emerald: '#00B894',
+            'emerald-dark': '#00A381',
+          },
+          fontFamily: {
+            jakarta: ['Plus Jakarta Sans', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    html, body { height: 100%; margin: 0; }
+    * { font-family: 'Plus Jakarta Sans', sans-serif; }
+    .hero-gradient { background: linear-gradient(135deg, #0A3D62 0%, #0E4D7A 50%, #0A3D62 100%); }
+    .card-hover { transition: transform 0.3s, box-shadow 0.3s; }
+    .card-hover:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(10,61,98,0.15); }
+    .fade-in { animation: fadeIn 0.8s ease-out forwards; opacity: 0; }
+    @keyframes fadeIn { to { opacity: 1; } }
+    .fade-in:nth-child(1) { animation-delay: 0.1s; }
+    .fade-in:nth-child(2) { animation-delay: 0.2s; }
+    .fade-in:nth-child(3) { animation-delay: 0.3s; }
+    .fade-in:nth-child(4) { animation-delay: 0.4s; }
+    .fade-in:nth-child(5) { animation-delay: 0.5s; }
+    .fade-in:nth-child(6) { animation-delay: 0.6s; }
+    .pulse-dot { animation: pulse 2s infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+    .glow-button { box-shadow: 0 0 30px rgba(0, 184, 148, 0.4); }
+    .glow-button:hover { box-shadow: 0 0 40px rgba(0, 184, 148, 0.6); }
+    .scroll-smooth { scroll-behavior: smooth; }
+    .stat-number { font-variant-numeric: tabular-nums; }
+  </style>
+  <style>body { box-sizing: border-box; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full overflow-auto bg-white scroll-smooth"><!-- Navbar -->
+  <nav class="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100">
+   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
+    <div class="flex items-center gap-2">
+     <div class="w-8 h-8 bg-emerald rounded-lg flex items-center justify-center"><i data-lucide="zap" class="w-5 h-5 text-white"></i>
+     </div><span class="text-xl font-bold text-navy">Cobro<span class="text-emerald">Flex</span></span>
+    </div>
+    <div class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600"><a href="#beneficios" class="hover:text-navy transition">Beneficios</a> <a href="#estadisticas" class="hover:text-navy transition">Resultados</a> <a href="#testimonios" class="hover:text-navy transition">Testimonios</a> <a href="#planes" class="hover:text-navy transition">Planes</a>
+    </div>
+    <div class="hidden md:flex items-center gap-3"><button class="text-sm font-medium text-navy hover:text-emerald transition">Iniciar sesión</button> <button id="nav-cta" class="bg-emerald hover:bg-emerald-dark text-white text-sm font-semibold px-5 py-2.5 rounded-lg transition glow-button">Comenzar ahora</button>
+    </div><button id="mobile-menu-btn" class="md:hidden text-navy"> <i data-lucide="menu" class="w-6 h-6"></i> </button>
+   </div>
+  </nav><!-- Hero -->
+  <section class="hero-gradient pt-28 pb-20 md:pt-36 md:pb-28 relative overflow-hidden">
+   <div class="absolute inset-0 opacity-10">
+    <svg width="100%" height="100%"><defs>
+      <pattern id="grid" width="40" height="40" patternunits="userSpaceOnUse">
+       <path d="M 40 0 L 0 0 0 40" fill="none" stroke="white" stroke-width="0.5" />
+      </pattern>
+     </defs> <rect width="100%" height="100%" fill="url(#grid)" />
+    </svg>
+   </div>
+   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+     <div class="fade-in">
+      <div class="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-1.5 mb-6"><span class="w-2 h-2 bg-emerald rounded-full pulse-dot"></span> <span class="text-white/90 text-sm">Plataforma activa 24/7</span>
+      </div>
+      <h1 id="hero-title" class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight mb-6">Cobra más rápido y haz crecer tu negocio con CobroFlex</h1>
+      <p id="hero-subtitle" class="text-lg text-white/80 mb-8 max-w-lg">Automatiza tus cobros, controla tus cuentas por cobrar y mejora tu flujo de efectivo desde una sola plataforma.</p>
+      <div class="flex flex-col sm:flex-row gap-4"><button id="cta-primary" class="bg-emerald hover:bg-emerald-dark text-white font-semibold px-8 py-4 rounded-xl transition shadow-lg shadow-emerald/30 flex items-center justify-center gap-2 glow-button"> <i data-lucide="play-circle" class="w-5 h-5"></i> <span>Solicitar demostración</span> </button> <button id="cta-secondary" class="bg-white/10 hover:bg-white/20 border border-white/30 text-white font-semibold px-8 py-4 rounded-xl transition flex items-center justify-center gap-2"> <i data-lucide="arrow-right" class="w-5 h-5"></i> <span>Comenzar ahora</span> </button>
+      </div>
+     </div><!-- Hero Visual -->
+     <div class="hidden lg:block fade-in">
+      <div class="relative">
+       <div class="bg-white/10 backdrop-blur border border-white/20 rounded-2xl p-6">
+        <div class="bg-navy-light rounded-xl p-5">
+         <div class="flex items-center justify-between mb-4"><span class="text-white/70 text-sm font-medium">Dashboard de Cobros</span> <span class="text-emerald text-sm font-bold">+32% ↑</span>
+         </div>
+         <svg viewbox="0 0 300 100" class="w-full h-24"><polyline points="0,80 40,70 80,60 120,45 160,50 200,30 240,25 280,10" fill="none" stroke="#00B894" stroke-width="3" stroke-linecap="round" /> <polyline points="0,80 40,70 80,60 120,45 160,50 200,30 240,25 280,10" fill="url(#chartGrad)" stroke="none" /> <defs>
+           <lineargradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#00B894" stop-opacity="0.3" />
+            <stop offset="100%" stop-color="#00B894" stop-opacity="0" />
+           </lineargradient>
+          </defs>
+         </svg>
+         <div class="grid grid-cols-3 gap-3 mt-4">
+          <div class="bg-white/5 rounded-lg p-3 text-center">
+           <p class="text-emerald text-lg font-bold stat-number">$48K</p>
+           <p class="text-white/50 text-xs">Cobrado</p>
+          </div>
+          <div class="bg-white/5 rounded-lg p-3 text-center">
+           <p class="text-white text-lg font-bold stat-number">127</p>
+           <p class="text-white/50 text-xs">Facturas</p>
+          </div>
+          <div class="bg-white/5 rounded-lg p-3 text-center">
+           <p class="text-emerald text-lg font-bold stat-number">95%</p>
+           <p class="text-white/50 text-xs">Recuperado</p>
+          </div>
+         </div>
+        </div>
+       </div><!-- Floating notification -->
+       <div class="absolute -top-4 -right-4 bg-white rounded-xl shadow-xl p-3 flex items-center gap-3 animate-bounce" style="animation-duration:3s">
+        <div class="w-10 h-10 bg-emerald/10 rounded-full flex items-center justify-center"><i data-lucide="check-circle" class="w-5 h-5 text-emerald"></i>
+        </div>
+        <div>
+         <p class="text-xs font-semibold text-navy">Pago recibido</p>
+         <p class="text-xs text-gray-500">$2,500.00</p>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section><!-- Beneficios -->
+  <section id="beneficios" class="py-20 bg-gray-50">
+   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-14">
+     <h2 id="benefits-title" class="text-3xl md:text-4xl font-bold text-navy mb-4">Todo lo que necesitas para cobrar mejor</h2>
+     <p class="text-gray-500 max-w-2xl mx-auto">Herramientas inteligentes diseñadas para que tu negocio no pierda dinero.</p>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+     <div class="bg-white rounded-2xl p-7 card-hover fade-in border border-gray-100">
+      <div class="w-12 h-12 bg-emerald/10 rounded-xl flex items-center justify-center mb-5"><i data-lucide="repeat" class="w-6 h-6 text-emerald"></i>
+      </div>
+      <h3 class="text-lg font-bold text-navy mb-2">Cobros automáticos</h3>
+      <p class="text-gray-500 text-sm">Programa cobros recurrentes y olvídate de perseguir pagos manualmente.</p>
+     </div>
+     <div class="bg-white rounded-2xl p-7 card-hover fade-in border border-gray-100">
+      <div class="w-12 h-12 bg-emerald/10 rounded-xl flex items-center justify-center mb-5"><i data-lucide="message-circle" class="w-6 h-6 text-emerald"></i>
+      </div>
+      <h3 class="text-lg font-bold text-navy mb-2">Recordatorios por WhatsApp</h3>
+      <p class="text-gray-500 text-sm">Envía recordatorios automáticos a tus clientes por su canal favorito.</p>
+     </div>
+     <div class="bg-white rounded-2xl p-7 card-hover fade-in border border-gray-100">
+      <div class="w-12 h-12 bg-emerald/10 rounded-xl flex items-center justify-center mb-5"><i data-lucide="users" class="w-6 h-6 text-emerald"></i>
+      </div>
+      <h3 class="text-lg font-bold text-navy mb-2">Gestión de clientes</h3>
+      <p class="text-gray-500 text-sm">Organiza tu cartera de clientes y visualiza el estado de cada cuenta.</p>
+     </div>
+     <div class="bg-white rounded-2xl p-7 card-hover fade-in border border-gray-100">
+      <div class="w-12 h-12 bg-emerald/10 rounded-xl flex items-center justify-center mb-5"><i data-lucide="bar-chart-2" class="w-6 h-6 text-emerald"></i>
+      </div>
+      <h3 class="text-lg font-bold text-navy mb-2">Reportes en tiempo real</h3>
+      <p class="text-gray-500 text-sm">Visualiza métricas clave de tu flujo de caja al instante.</p>
+     </div>
+     <div class="bg-white rounded-2xl p-7 card-hover fade-in border border-gray-100">
+      <div class="w-12 h-12 bg-emerald/10 rounded-xl flex items-center justify-center mb-5"><i data-lucide="file-text" class="w-6 h-6 text-emerald"></i>
+      </div>
+      <h3 class="text-lg font-bold text-navy mb-2">Facturación digital</h3>
+      <p class="text-gray-500 text-sm">Genera y envía facturas profesionales en segundos.</p>
+     </div>
+     <div class="bg-white rounded-2xl p-7 card-hover fade-in border border-gray-100">
+      <div class="w-12 h-12 bg-emerald/10 rounded-xl flex items-center justify-center mb-5"><i data-lucide="clock" class="w-6 h-6 text-emerald"></i>
+      </div>
+      <h3 class="text-lg font-bold text-navy mb-2">Seguimiento de pagos</h3>
+      <p class="text-gray-500 text-sm">Monitorea pagos pendientes y recibe alertas automáticas.</p>
+     </div>
+    </div>
+   </div>
+  </section><!-- Estadísticas -->
+  <section id="estadisticas" class="py-20 bg-white">
+   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-14">
+     <h2 id="stats-title" class="text-3xl md:text-4xl font-bold text-navy mb-4">Resultados que hablan por sí solos</h2>
+     <p class="text-gray-500">Números reales de negocios que confían en CobroFlex.</p>
+    </div>
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
+     <div class="bg-gradient-to-br from-navy to-navy-light rounded-2xl p-7 text-center card-hover">
+      <p class="text-3xl md:text-4xl font-extrabold text-emerald mb-2 stat-number">95%</p>
+      <p class="text-white/80 text-sm">Efectividad en recuperación</p>
+     </div>
+     <div class="bg-gradient-to-br from-navy to-navy-light rounded-2xl p-7 text-center card-hover">
+      <p class="text-3xl md:text-4xl font-extrabold text-emerald mb-2 stat-number">+10K</p>
+      <p class="text-white/80 text-sm">Cobros procesados</p>
+     </div>
+     <div class="bg-gradient-to-br from-navy to-navy-light rounded-2xl p-7 text-center card-hover">
+      <p class="text-3xl md:text-4xl font-extrabold text-emerald mb-2 stat-number">+500</p>
+      <p class="text-white/80 text-sm">Negocios atendidos</p>
+     </div>
+     <div class="bg-gradient-to-br from-navy to-navy-light rounded-2xl p-7 text-center card-hover">
+      <p class="text-3xl md:text-4xl font-extrabold text-emerald mb-2 stat-number">24/7</p>
+      <p class="text-white/80 text-sm">Monitoreo de pagos</p>
+     </div>
+    </div>
+   </div>
+  </section><!-- Testimonios -->
+  <section id="testimonios" class="py-20 bg-gray-50">
+   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-14">
+     <h2 id="testimonials-title" class="text-3xl md:text-4xl font-bold text-navy mb-4">Lo que dicen nuestros clientes</h2>
+    </div>
+    <div class="grid md:grid-cols-3 gap-6">
+     <div class="bg-white rounded-2xl p-7 border border-gray-100 card-hover">
+      <div class="flex items-center gap-1 mb-4"><i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i> <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i> <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i> <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i> <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
+      </div>
+      <p class="text-gray-600 text-sm mb-5">"Redujimos la morosidad en un 60% en solo dos meses. CobroFlex transformó completamente nuestro flujo de caja."</p>
+      <div class="flex items-center gap-3">
+       <div class="w-10 h-10 bg-navy/10 rounded-full flex items-center justify-center"><span class="text-navy font-bold text-sm">MC</span>
+       </div>
+       <div>
+        <p class="text-sm font-semibold text-navy">María Castro</p>
+        <p class="text-xs text-gray-400">Distribuidora El Sol</p>
+       </div>
+      </div>
+     </div>
+     <div class="bg-white rounded-2xl p-7 border border-gray-100 card-hover">
+      <div class="flex items-center gap-1 mb-4"><i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i> <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i> <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i> <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i> <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
+      </div>
+      <p class="text-gray-600 text-sm mb-5">"Los recordatorios por WhatsApp son increíbles. Mis clientes pagan a tiempo sin que yo tenga que llamarlos."</p>
+      <div class="flex items-center gap-3">
+       <div class="w-10 h-10 bg-navy/10 rounded-full flex items-center justify-center"><span class="text-navy font-bold text-sm">RL</span>
+       </div>
+       <div>
+        <p class="text-sm font-semibold text-navy">Roberto López</p>
+        <p class="text-xs text-gray-400">Servicios TechPro</p>
+       </div>
+      </div>
+     </div>
+     <div class="bg-white rounded-2xl p-7 border border-gray-100 card-hover">
+      <div class="flex items-center gap-1 mb-4"><i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i> <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i> <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i> <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i> <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
+      </div>
+      <p class="text-gray-600 text-sm mb-5">"La mejor inversión para mi negocio. Ahora cobro el 95% de mis facturas antes del vencimiento."</p>
+      <div class="flex items-center gap-3">
+       <div class="w-10 h-10 bg-navy/10 rounded-full flex items-center justify-center"><span class="text-navy font-bold text-sm">AP</span>
+       </div>
+       <div>
+        <p class="text-sm font-semibold text-navy">Ana Pérez</p>
+        <p class="text-xs text-gray-400">Boutique Eleganza</p>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section><!-- Planes -->
+  <section id="planes" class="py-20 bg-white">
+   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-14">
+     <h2 id="pricing-title" class="text-3xl md:text-4xl font-bold text-navy mb-4">Elige tu plan ideal</h2>
+     <p class="text-gray-500">Sin contratos. Cancela cuando quieras.</p>
+    </div>
+    <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+     <div class="bg-white border-2 border-gray-200 rounded-2xl p-8 card-hover">
+      <p class="text-sm font-semibold text-emerald uppercase tracking-wide mb-2">Emprendedor</p>
+      <p class="text-4xl font-extrabold text-navy mb-1">$29<span class="text-lg font-medium text-gray-400">/mes</span></p>
+      <p class="text-gray-400 text-sm mb-6">Ideal para iniciar</p>
+      <ul class="space-y-3 mb-8">
+       <li class="flex items-center gap-2 text-sm text-gray-600"><i data-lucide="check" class="w-4 h-4 text-emerald"></i>50 cobros/mes</li>
+       <li class="flex items-center gap-2 text-sm text-gray-600"><i data-lucide="check" class="w-4 h-4 text-emerald"></i>Recordatorios WhatsApp</li>
+       <li class="flex items-center gap-2 text-sm text-gray-600"><i data-lucide="check" class="w-4 h-4 text-emerald"></i>Reportes básicos</li>
+       <li class="flex items-center gap-2 text-sm text-gray-600"><i data-lucide="check" class="w-4 h-4 text-emerald"></i>1 usuario</li>
+      </ul><button class="w-full py-3 border-2 border-navy text-navy font-semibold rounded-xl hover:bg-navy hover:text-white transition">Elegir plan</button>
+     </div>
+     <div class="bg-navy rounded-2xl p-8 card-hover relative border-2 border-emerald shadow-xl shadow-emerald/10">
+      <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-emerald text-white text-xs font-bold px-4 py-1 rounded-full">
+       Popular
+      </div>
+      <p class="text-sm font-semibold text-emerald uppercase tracking-wide mb-2">Negocio</p>
+      <p class="text-4xl font-extrabold text-white mb-1">$79<span class="text-lg font-medium text-white/50">/mes</span></p>
+      <p class="text-white/50 text-sm mb-6">Para negocios en crecimiento</p>
+      <ul class="space-y-3 mb-8">
+       <li class="flex items-center gap-2 text-sm text-white/80"><i data-lucide="check" class="w-4 h-4 text-emerald"></i>500 cobros/mes</li>
+       <li class="flex items-center gap-2 text-sm text-white/80"><i data-lucide="check" class="w-4 h-4 text-emerald"></i>Cobros automáticos</li>
+       <li class="flex items-center gap-2 text-sm text-white/80"><i data-lucide="check" class="w-4 h-4 text-emerald"></i>Facturación digital</li>
+       <li class="flex items-center gap-2 text-sm text-white/80"><i data-lucide="check" class="w-4 h-4 text-emerald"></i>5 usuarios</li>
+       <li class="flex items-center gap-2 text-sm text-white/80"><i data-lucide="check" class="w-4 h-4 text-emerald"></i>Soporte prioritario</li>
+      </ul><button class="w-full py-3 bg-emerald hover:bg-emerald-dark text-white font-semibold rounded-xl transition glow-button">Elegir plan</button>
+     </div>
+     <div class="bg-white border-2 border-gray-200 rounded-2xl p-8 card-hover">
+      <p class="text-sm font-semibold text-emerald uppercase tracking-wide mb-2">Empresa</p>
+      <p class="text-4xl font-extrabold text-navy mb-1">$199<span class="text-lg font-medium text-gray-400">/mes</span></p>
+      <p class="text-gray-400 text-sm mb-6">Solución completa</p>
+      <ul class="space-y-3 mb-8">
+       <li class="flex items-center gap-2 text-sm text-gray-600"><i data-lucide="check" class="w-4 h-4 text-emerald"></i>Cobros ilimitados</li>
+       <li class="flex items-center gap-2 text-sm text-gray-600"><i data-lucide="check" class="w-4 h-4 text-emerald"></i>API personalizada</li>
+       <li class="flex items-center gap-2 text-sm text-gray-600"><i data-lucide="check" class="w-4 h-4 text-emerald"></i>Reportes avanzados</li>
+       <li class="flex items-center gap-2 text-sm text-gray-600"><i data-lucide="check" class="w-4 h-4 text-emerald"></i>Usuarios ilimitados</li>
+       <li class="flex items-center gap-2 text-sm text-gray-600"><i data-lucide="check" class="w-4 h-4 text-emerald"></i>Gerente de cuenta</li>
+      </ul><button class="w-full py-3 border-2 border-navy text-navy font-semibold rounded-xl hover:bg-navy hover:text-white transition">Contactar ventas</button>
+     </div>
+    </div>
+   </div>
+  </section><!-- CTA Final -->
+  <section class="py-20 hero-gradient relative overflow-hidden">
+   <div class="absolute inset-0 opacity-5">
+    <svg width="100%" height="100%"><defs>
+      <pattern id="grid2" width="60" height="60" patternunits="userSpaceOnUse">
+       <circle cx="30" cy="30" r="1" fill="white" />
+      </pattern>
+     </defs> <rect width="100%" height="100%" fill="url(#grid2)" />
+    </svg>
+   </div>
+   <div class="max-w-3xl mx-auto px-4 text-center relative z-10">
+    <h2 id="cta-final-title" class="text-3xl md:text-4xl font-bold text-white mb-4">¿Listo para cobrar más rápido?</h2>
+    <p class="text-white/70 mb-8">Únete a más de 500 negocios que ya transformaron su cobranza con CobroFlex.</p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center"><button class="bg-emerald hover:bg-emerald-dark text-white font-semibold px-8 py-4 rounded-xl transition shadow-lg shadow-emerald/30 glow-button">Comenzar gratis</button> <button class="bg-white/10 hover:bg-white/20 border border-white/30 text-white font-semibold px-8 py-4 rounded-xl transition">Hablar con ventas</button>
+    </div>
+   </div>
+  </section><!-- Footer -->
+  <footer class="bg-navy py-14">
+   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
+     <div>
+      <div class="flex items-center gap-2 mb-4">
+       <div class="w-8 h-8 bg-emerald rounded-lg flex items-center justify-center"><i data-lucide="zap" class="w-5 h-5 text-white"></i>
+       </div><span class="text-xl font-bold text-white">Cobro<span class="text-emerald">Flex</span></span>
+      </div>
+      <p class="text-white/50 text-sm">La plataforma de cobranza inteligente para negocios que quieren crecer.</p>
+     </div>
+     <div>
+      <h4 class="text-white font-semibold mb-4">Producto</h4>
+      <ul class="space-y-2 text-sm text-white/50">
+       <li><a href="#" class="hover:text-emerald transition">Funcionalidades</a></li>
+       <li><a href="#" class="hover:text-emerald transition">Precios</a></li>
+       <li><a href="#" class="hover:text-emerald transition">Integraciones</a></li>
+       <li><a href="#" class="hover:text-emerald transition">API</a></li>
+      </ul>
+     </div>
+     <div>
+      <h4 class="text-white font-semibold mb-4">Empresa</h4>
+      <ul class="space-y-2 text-sm text-white/50">
+       <li><a href="#" class="hover:text-emerald transition">Nosotros</a></li>
+       <li><a href="#" class="hover:text-emerald transition">Blog</a></li>
+       <li><a href="#" class="hover:text-emerald transition">Carreras</a></li>
+       <li><a href="#" class="hover:text-emerald transition">Contacto</a></li>
+      </ul>
+     </div>
+     <div>
+      <h4 class="text-white font-semibold mb-4">Legal</h4>
+      <ul class="space-y-2 text-sm text-white/50">
+       <li><a href="#" class="hover:text-emerald transition">Privacidad</a></li>
+       <li><a href="#" class="hover:text-emerald transition">Términos</a></li>
+       <li><a href="#" class="hover:text-emerald transition">Seguridad</a></li>
+      </ul>
+     </div>
+    </div>
+    <div class="border-t border-white/10 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+     <p class="text-white/40 text-sm">© 2024 CobroFlex. Todos los derechos reservados.</p>
+     <div class="flex items-center gap-4"><a href="#" class="text-white/40 hover:text-emerald transition"> <i data-lucide="facebook" class="w-5 h-5"></i> </a> <a href="#" class="text-white/40 hover:text-emerald transition"> <i data-lucide="twitter" class="w-5 h-5"></i> </a> <a href="#" class="text-white/40 hover:text-emerald transition"> <i data-lucide="instagram" class="w-5 h-5"></i> </a> <a href="#" class="text-white/40 hover:text-emerald transition"> <i data-lucide="linkedin" class="w-5 h-5"></i> </a>
+     </div>
+    </div>
+   </div>
+  </footer>
+  <script>
+    const defaultConfig = {
+      hero_title: "Cobra más rápido y haz crecer tu negocio con CobroFlex",
+      hero_subtitle: "Automatiza tus cobros, controla tus cuentas por cobrar y mejora tu flujo de efectivo desde una sola plataforma.",
+      cta_primary: "Solicitar demostración",
+      cta_secondary: "Comenzar ahora",
+      benefits_title: "Todo lo que necesitas para cobrar mejor",
+      stats_title: "Resultados que hablan por sí solos",
+      testimonials_title: "Lo que dicen nuestros clientes",
+      pricing_title: "Elige tu plan ideal",
+      cta_final_title: "¿Listo para cobrar más rápido?",
+      background_color: "#0A3D62",
+      surface_color: "#ffffff",
+      text_color: "#0A3D62",
+      primary_action_color: "#00B894",
+      secondary_action_color: "#0E4D7A",
+      font_family: "Plus Jakarta Sans",
+      font_size: 16
+    };
+
+    function applyConfig(config) {
+      document.getElementById('hero-title').textContent = config.hero_title || defaultConfig.hero_title;
+      document.getElementById('hero-subtitle').textContent = config.hero_subtitle || defaultConfig.hero_subtitle;
+      document.getElementById('cta-primary').querySelector('span').textContent = config.cta_primary || defaultConfig.cta_primary;
+      document.getElementById('cta-secondary').querySelector('span').textContent = config.cta_secondary || defaultConfig.cta_secondary;
+      document.getElementById('benefits-title').textContent = config.benefits_title || defaultConfig.benefits_title;
+      document.getElementById('stats-title').textContent = config.stats_title || defaultConfig.stats_title;
+      document.getElementById('testimonials-title').textContent = config.testimonials_title || defaultConfig.testimonials_title;
+      document.getElementById('pricing-title').textContent = config.pricing_title || defaultConfig.pricing_title;
+      document.getElementById('cta-final-title').textContent = config.cta_final_title || defaultConfig.cta_final_title;
+
+      const font = config.font_family || defaultConfig.font_family;
+      document.body.style.fontFamily = `${font}, sans-serif`;
+
+      const size = config.font_size || defaultConfig.font_size;
+      document.body.style.fontSize = size + 'px';
+    }
+
+    window.elementSdk.init({
+      defaultConfig,
+      onConfigChange: async (config) => { applyConfig(config); },
+      mapToCapabilities: (config) => ({
+        recolorables: [
+          { get: () => config.background_color || defaultConfig.background_color, set: (v) => { config.background_color = v; window.elementSdk.setConfig({ background_color: v }); } },
+          { get: () => config.surface_color || defaultConfig.surface_color, set: (v) => { config.surface_color = v; window.elementSdk.setConfig({ surface_color: v }); } },
+          { get: () => config.text_color || defaultConfig.text_color, set: (v) => { config.text_color = v; window.elementSdk.setConfig({ text_color: v }); } },
+          { get: () => config.primary_action_color || defaultConfig.primary_action_color, set: (v) => { config.primary_action_color = v; window.elementSdk.setConfig({ primary_action_color: v }); } },
+          { get: () => config.secondary_action_color || defaultConfig.secondary_action_color, set: (v) => { config.secondary_action_color = v; window.elementSdk.setConfig({ secondary_action_color: v }); } },
+        ],
+        borderables: [],
+        fontEditable: { get: () => config.font_family || defaultConfig.font_family, set: (v) => { config.font_family = v; window.elementSdk.setConfig({ font_family: v }); } },
+        fontSizeable: { get: () => config.font_size || defaultConfig.font_size, set: (v) => { config.font_size = v; window.elementSdk.setConfig({ font_size: v }); } },
+      }),
+      mapToEditPanelValues: (config) => new Map([
+        ["hero_title", config.hero_title || defaultConfig.hero_title],
+        ["hero_subtitle", config.hero_subtitle || defaultConfig.hero_subtitle],
+        ["cta_primary", config.cta_primary || defaultConfig.cta_primary],
+        ["cta_secondary", config.cta_secondary || defaultConfig.cta_secondary],
+        ["benefits_title", config.benefits_title || defaultConfig.benefits_title],
+        ["stats_title", config.stats_title || defaultConfig.stats_title],
+        ["testimonials_title", config.testimonials_title || defaultConfig.testimonials_title],
+        ["pricing_title", config.pricing_title || defaultConfig.pricing_title],
+        ["cta_final_title", config.cta_final_title || defaultConfig.cta_final_title],
+      ])
+    });
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        document.querySelector(a.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+
+    lucide.createIcons();
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a0bf4f4ce23725bb',t:'MTc4MTUwMjc1Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c</script></body>
+</html>
